@@ -18,7 +18,7 @@ Se corren ejecutando el comando en cada proyecto:
 
 `npm test`
 
-# Overview
+## Overview
 
 Para realizar la aplicación utilicé el stack de tecnologías pedido en la consigna.
 El Frontend está desarrollado con React, Sass para los estilos, react-helmet-async para el SEO.
