@@ -3,7 +3,7 @@
 ## Instalación
 
 Utilice las version 18 de node.
-Recomiendo instalar [nvm](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) para poder usar el versionado de NodeJs de los proyectos.
+Recomiendo instalar [nvm](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) para poder usar el versionado de NodeJs del proyecto.
 
 ## Ejecución
 
