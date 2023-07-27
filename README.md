@@ -14,9 +14,11 @@ npm run start
 ```
 ## Tests
 
-Se corren ejecutando el comando en cada proyecto:
+Se corren ejecutando el comando en el proyecto:
 
-`npm test`
+```npm run test```
+
+### Va a mostrar los tests con el coverage
 
 ## Overview
 
