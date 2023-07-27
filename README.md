@@ -24,11 +24,6 @@ npm run test
 
 ## Overview
 
-Para realizar la aplicación utilicé el stack de tecnologías pedido en la consigna.
-El Frontend está desarrollado con React, Sass para los estilos, react-helmet-async para el SEO.
-El Backend esta compuesto en capas para facilitar su testeo, utilice Express con Typescript, use Jest para lo que es test 
-con la libreria supertest para mockear las request a los endpoints.
-
 Se encuentra dividido en tres capas:
 
 1. Controllers
