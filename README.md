@@ -16,7 +16,9 @@ npm run start
 
 Se corren ejecutando el comando en el proyecto:
 
-```npm run test```
+```
+npm run test
+```
 
 ### Va a mostrar los tests con el coverage
 
