@@ -1,15 +1,20 @@
 import { Request, Response } from "express";
-import { DeleteRequest } from "../interfaces/deleteRequest.interface";
-import { Pet } from "../interfaces/pet.interface";
-import { UpdatePartsRequest } from "../interfaces/updatePartsRequest.interface";
-import { UploadImageRequest } from "../interfaces/uploadImageRequest.interface";
+import { DeleteRequest } from "../interfaces/deleteRequest";
+import { Pet } from "../interfaces/pet";
+import { UpdatePartsRequest } from "../interfaces/updatePartsRequest";
+import { UploadImageRequest } from "../interfaces/uploadImageRequest";
 import { default as PetService } from "../services/pet.service";
 
 const updatePet = async (request: Request, response: Response) => {
     try {
+        console.log(request.body);
         const result = await PetService.updatePet(request.body as Pet);
 
-        return response.status(200).json(result);
+        if (result?.code === 404) {
+            return response.status(404).json(result);
+        }
+
+        return response.status(201).json(result);
     } catch (error) {
         return response.status(500).json(error);
     }
@@ -19,7 +24,7 @@ const addPet = async (request: Request, response: Response) => {
     try {
         const result = await PetService.addPet(request.body as Pet);
 
-        return response.status(200).json(result);
+        return response.status(201).json(result);
     } catch (error) {
         return response.status(500).json(error);
     }
@@ -49,6 +54,10 @@ const findPetById = async (request: Request, response: Response) => {
     try {
         const result = await PetService.findPetById(Number(request.params?.petId));
 
+        if (result?.code === 404) {
+            return response.status(404).json(result);
+        }
+
         return response.status(200).json(result);
     } catch (error) {
         return response.status(500).json(error);
@@ -65,7 +74,7 @@ const updatePetNameAndStatus = async (request: Request, response: Response) => {
 
         const result = await PetService.updatePetNameAndStatus(data);
 
-        return response.status(200).json(result);
+        return response.status(201).json(result);
     } catch (error) {
         return response.status(500).json(error);
     }
@@ -79,6 +88,10 @@ const deletePet = async (request: Request, response: Response) => {
         }
 
         const result = await PetService.deletePet(data);
+
+        if (result?.code === 404) {
+            return response.status(404).json(result);
+        }
 
         return response.status(200).json(result);
     } catch (error) {
@@ -95,7 +108,11 @@ const uploadImage = async (request: Request, response: Response) => {
 
         const result = await PetService.uploadImage(data);
 
-        return response.status(200).json(result);
+        if (result?.code === 404) {
+            return response.status(404).json(result);
+        }
+
+        return response.status(201).json(result);
     } catch (error) {
         return response.status(500).json(error);
     }
