@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "7d92dfe8-513e-41d9-b179-56d58719f32d",
+		"name": "PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20083049"
+	},
+	"item": [
+		{
+			"name": "Upload Image",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "@Captura de pantalla 2023-07-26 a la(s) 15.04.27.png"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/10/uploadImage?additionalMetadata=image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"10",
+						"uploadImage"
+					],
+					"query": [
+						{
+							"key": "additionalMetadata",
+							"value": "image"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an existing pet",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 10,\n  \"name\": \"doggie\",\n  \"category\": {\n    \"id\": 1,\n    \"name\": \"Dogs\"\n  },\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"available\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new pet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 10,\n    \"name\": \"doggie\",\n    \"category\": {\n        \"id\": 1,\n        \"name\": \"Dogs\"\n    },\n    \"photoUrls\": [\n        \"\"\n    ],\n    \"tags\": [\n        {\n            \"id\": 0,\n            \"name\": \"Mimoso\"\n        }\n    ],\n    \"status\": \"available\"\n}"
+				},
+				"url": {
+					"raw": "https://petstore3.swagger.io/api/v3/pet",
+					"protocol": "https",
+					"host": [
+						"petstore3",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"api",
+						"v3",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Pets by status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/findByStatus?status=available",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"findByStatus"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finds Pets by tags",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "api_key",
+						"value": "abc123"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/findByTags?tags=tag1&tags=tag2&tags=tag3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"findByTags"
+					],
+					"query": [
+						{
+							"key": "tags",
+							"value": "tag1"
+						},
+						{
+							"key": "tags",
+							"value": "tag2"
+						},
+						{
+							"key": "tags",
+							"value": "tag3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find pet by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "api_key",
+						"value": "abc123"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/40961",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"40961"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Updates a pet status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/10?name=doggie&status=pending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"10"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "doggie"
+						},
+						{
+							"key": "status",
+							"value": "pending"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a pet",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "api_key",
+						"value": "abc123"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/v3/pet/1488",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v3",
+						"pet",
+						"1488"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
