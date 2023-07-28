@@ -35,3 +35,5 @@ Los middlewares son los encargados de intervenir el request para ver si esta bie
 Los servicios tienen como tarea consumir los recursos externos, en este caso la api de PetStore.
 
 ## Postman
+
+Deje la colección en un json.
