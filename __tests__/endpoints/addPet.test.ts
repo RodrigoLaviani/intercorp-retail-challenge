@@ -3,7 +3,7 @@ import app from "../../application";
 import { default as PetService } from '../../src/services/pet.service';
 import { petResponseMock } from "../mocks/petResponse";
 
-describe('Update Pet endpoint', () => {
+describe('Add Pet endpoint', () => {
   let server: any;
 
   beforeAll((done) => {
@@ -20,11 +20,11 @@ describe('Update Pet endpoint', () => {
 
   
   test('OK - 200', async () => {
-    const updatePetMock = jest
-    .spyOn(PetService, 'updatePet')
-    .mockResolvedValueOnce({ code: 201, result: petResponseMock});
+    const addPetMock = jest
+    .spyOn(PetService, 'addPet')
+    .mockResolvedValueOnce(petResponseMock);
     
-    const response = await request(server).put(`/api/v3/pet`).send({
+    const response = await request(server).post(`/api/v3/pet`).send({
         id: 10,
         name: "doggie",
         category: {
@@ -44,47 +44,15 @@ describe('Update Pet endpoint', () => {
     });
 
     expect(response.statusCode).toBe(201);
-    expect(updatePetMock).toHaveBeenCalledTimes(1);
+    expect(addPetMock).toHaveBeenCalledTimes(1);
 
     expect(response.body.name).toBe("doggie");
 
-    updatePetMock.mockReset();
-  });
-
-  test('Pet not found - 404', async () => {
-    const updatePetMock = jest
-    .spyOn(PetService, 'updatePet')
-    .mockResolvedValueOnce({ code: 404, result: "Pet not found"});
-    
-    const response = await request(server).put(`/api/v3/pet`).send({
-        id: 10,
-        name: "doggie",
-        category: {
-          id: 1,
-          name: "Dogs"
-        },
-        photoUrls: [
-          ""
-        ],
-        tags: [
-          {
-            id: 0,
-            name: "Mimoso"
-          }
-        ],
-        status: "available"
-    });
-
-    expect(response.statusCode).toBe(404);
-    expect(updatePetMock).toHaveBeenCalledTimes(1);
-
-    expect(response.body).toBe("Pet not found");
-
-    updatePetMock.mockReset();
+    addPetMock.mockReset();
   });
 
   test('Bad request - 400', async () => {
-    const response = await request(server).put(`/api/v3/pet`).send({
+    const response = await request(server).post(`/api/v3/pet`).send({
       id: "a",
       name: "doggie",
       category: {
@@ -107,15 +75,15 @@ describe('Update Pet endpoint', () => {
   });
 
   test('Internal server error - 500', async () => {
-    const updatePetMock = jest
-    .spyOn(PetService, 'updatePet')
+    const addPetMock = jest
+    .spyOn(PetService, 'addPet')
     .mockRejectedValue({
         code: 500,
         type: "Internal Server Error",
         message: "Error in service"
     });
 
-    const response = await request(server).put(`/api/v3/pet`).send({
+    const response = await request(server).post(`/api/v3/pet`).send({
         id: 10,
         name: "doggie",
         category: {
@@ -135,8 +103,8 @@ describe('Update Pet endpoint', () => {
     });
 
     expect(response.statusCode).toBe(500);
-    expect(updatePetMock).toHaveBeenCalledTimes(1);
+    expect(addPetMock).toHaveBeenCalledTimes(1);
 
-    updatePetMock.mockReset();
+    addPetMock.mockReset();
   });
 });
