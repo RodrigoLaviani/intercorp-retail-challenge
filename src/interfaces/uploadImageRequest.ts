@@ -1,4 +1,5 @@
 export interface UploadImageRequest {
     petId: number,
-    additionalMetadata: string
+    additionalMetadata: string,
+    image: Buffer
 }

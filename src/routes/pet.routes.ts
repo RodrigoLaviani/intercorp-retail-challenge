@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { default as PetController } from '../controllers/pet.controller';
 import { validate } from '../middlewares/validate';
 import { default as PetValidators } from '../validators/pet';
-import { default as CommonsValidators } from '../validators/commons';
 
 const router = Router();
 
@@ -14,16 +13,16 @@ router.route('').put(validate(PetValidators.petBodyValidators), PetController.up
 router.route('').post(validate(PetValidators.petBodyValidators), PetController.addPet);
 
 // Finds Pets by status
-router.route('/findByStatus').get(validate([CommonsValidators.statusQueryValidator]), PetController.findPetByStatus);
+router.route('/findByStatus').get(validate(PetValidators.findByStatusValidators), PetController.findPetByStatus);
 
 // Finds Pets by tags
-router.route('/findByTags').get(validate([CommonsValidators.tagsQueryValidator]), PetController.findPetByTags);
+router.route('/findByTags').get(validate(PetValidators.findByTagsValidators), PetController.findPetByTags);
 
 // Find pet by ID
-router.route('/:petId').get(validate([CommonsValidators.petIdParamValidator]), PetController.findPetById);
+router.route('/:petId').get(validate(PetValidators.findByIdValidators), PetController.findPetById);
 
 // Updates a pet in the store with form data
-router.route('/:petId').post(validate(PetValidators.updatesPetStatusValidators), PetController.updatePetNameAndStatus);
+router.route('/:petId').post(validate(PetValidators.updatesPetStatusValidators), PetController.updatePetStatus);
 
 // Deletes a pet
 router.route('/:petId').delete(validate(PetValidators.deletePetValidator), PetController.deletePet);
